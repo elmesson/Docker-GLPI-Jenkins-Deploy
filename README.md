@@ -30,7 +30,8 @@ git clone https://github.com/williamnormandia/GLPI.git
 git clone https://github.com/glpi-project/glpi/releases/download/9.5.1/glpi-9.5.1.tgz
 
 
-```Para remover pasta e container:>  rm -rf GLPI 
+### Para remover pasta e container:
+```rm -rf GLPI 
 ```
 
 cd GLPI 
