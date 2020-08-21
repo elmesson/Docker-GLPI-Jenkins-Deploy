@@ -8,43 +8,23 @@ Este repositório com o docker compose necessário para executar o GLPI através
 
 ### Instlando o docker:
 
-```bash
-curl -fsSL https://get.docker.com | sh
-```
+### GLPI v9.5
 
-### Instalando do docker-compose
+### Instancias: EC2 na AWS com RDS
 
-```bash
-curl -L https://github.com/docker/compose/releases/download/1.25.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-```
-
-### Criando diretório para presistencia de dados e baixando o repositório
-
-```bash
-cd /opt 
-
-git clone https://github.com/williamnormandia/GLPI.git
+###container Docker : imagem ubuntu com Apache e PHP
 
 
-git clone https://github.com/glpi-project/glpi/releases/download/9.5.1/glpi-9.5.1.tgz
+###Pipeline Jenkins para build e deploy. 
 
-
-### Para remover pasta e container:
-```rm -rf GLPI 
-```
-
-cd GLPI 
-
-mkdir -p ./var/www/html/glpi \
-         ./var/lib/mysql
-
-chown 472:472 ./var/lib/mysql \
-              ./var/lib/mysql 
-```
+Passo a passo do ambiente sendo montado no arquivo "Dockerfile", basta ter também a pasta "glpi" no memso diretório que o arquivo "Dockerfile". 
+E com o arquivo "Jenkinsfile" através de uma configuração de webhook neste repositório github,
+ toda vez que a um commit, ativa uma trigger no Jenkins que esta instalado(imagem docker) numa instancia na Amazon Web Services,
+ e quando ativada essa trigger ele faz checout neste repositório faz o build de da imagem docker baseado no "Dockerfile"
+ e sobre um container onde o deploy é feito. 
 
 ### Executando os containers
 
 ```bash
 docker-compose up -d
-```
+
